@@ -1,5 +1,5 @@
 # #TodosPelaEducacao  
-
+ 
 Repositório com os scripts usados para:  
 
 1. Acessar, a partir do R, as publicações do Twitter relacionados ao tema;  
