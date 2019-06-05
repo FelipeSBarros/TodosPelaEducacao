@@ -9,13 +9,15 @@ library(lubridate)
 # Carregando so dados
 source("./LoadData.R")
 
+colnames(df_Edu)
+
 # carregando stopowords do pacote tidytext
 stopword.pt <- stopwordslangs %>% filter(lang == "pt" & p >= 0.95) %>% select(word)
 
 # analise geral -----
 # Tweets ~ tempo
 df_Edu  %>%
-  ts_plot("hours")+
+  ts_plot("hours") +
   labs(
     title = "Quantidade de tweets por hora")
 #ggsave(filename = "./graficos/QuantidadeTweetHora", device = "png")
@@ -49,7 +51,7 @@ df_Edu %>%
   unnest_tokens(input = "text", output = "word") %>% 
   anti_join(stopword.pt) %>% 
   count(word, sort = TRUE) %>% 
-  #filter(! word %in% c("t.co", "https", "30mpelaeducacao", "educação", "tsunami30m", "30m", "30mpelaeducação")) %>% 
+  filter(! word %in% c("t.co", "https", "30mpelaeducacao", "educação", "tsunami30m", "30m", "30mpelaeducação")) %>% 
   top_n(60) %>% 
   ggplot(aes(label = word, size = n, color = n)) +
   geom_text_wordcloud() +
@@ -77,7 +79,7 @@ Merged %>%
   geom_node_text(aes(label = name), repel = TRUE,  vjust = 1, hjust = 1) +
   theme_void()
 
-#  Plotand em mapa
+#  Plotando em mapa
 par(mar = c(0, 0, 0, 0)) # reduzindo margens da figura
 ## plot limite Brasil
 maps::map(regions = "Brazil", lwd = 1)
