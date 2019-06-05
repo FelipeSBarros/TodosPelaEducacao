@@ -4,7 +4,7 @@ Repositório com os scripts usados para:
 
 1. Acessar, a partir do R, as publicações do Twitter relacionados ao tema;  
 1. Processar e analisar tais dados;  
-1.  
+1. Plotar em um mapa;  
 
 # Acessar os dados:  
 Será usada a biblioteca `rtweet`.  
